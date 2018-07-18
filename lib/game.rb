@@ -12,21 +12,22 @@ class Game
     @current_player = player_one
   end
 
-  def play_turn
-    loop do
-      @player_one.display(board.grid)
-      @player_two.display(board.grid)
-      if over?
-        if winner
-          abort("#{winner} you have won!")
-        else
-          abort("its a tie!")
-        end
-      end
-      move = current_player.get_move
-      board.place_mark(move, current_player.mark)
-      self.switch_players!
+  def play
+    play_turn until over?
+    if winner
+      abort("#{winner} you have won!")
+    else
+      abort("its a tie!")
     end
+  end
+
+  def play_turn
+    board.render
+    current_player.receive_board(board.grid)
+    move = current_player.get_move
+    board.place_mark(move, current_player.mark)
+    board.render
+    self.switch_players!
   end
 
   def winner
@@ -52,11 +53,7 @@ class Game
   end
 
   def over?
-    if winner
-      true
-    elsif board.grid.none? { |row| row.include?(nil) }
-      true
-    end
+    winner || board.grid.none? { |row| row.include?(nil) }
   end
 
   def switch_players!
@@ -76,5 +73,5 @@ if $PROGRAM_NAME == __FILE__
   garry = ComputerPlayer.new('garry')
 
   new_game = Game.new(human, garry)
-  new_game.play_turn
+  new_game.play
 end

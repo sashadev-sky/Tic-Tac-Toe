@@ -12,27 +12,7 @@ class HumanPlayer
     position.split(", ").map { |el| el.to_i }
   end
 
-  def display(board)
-    row0 = "0 |"
-    (0..2).each do |col|
-      row0 << (board[0][col] == nil ? "   |" : " " + board[0][col].to_s + " |")
-    end
-    row1 = "1 |"
-    (0..2).each do |col|
-      row1 << (board[1][col] == nil ? "   |" : " " + board[1][col].to_s + " |")
-    end
-    row2 = "2 |"
-    (0..2).each do |col|
-      row2 << (board[2][col] == nil ? "   |" : " " + board[2][col].to_s + " |")
-    end
-
-    puts "    0   1   2  "
-    puts "  |-----------|"
-    puts row0
-    puts "  |-----------|"
-    puts row1
-    puts "  |-----------|"
-    puts row2
-    puts "  |-----------|"
+  def receive_board(board)
+    #duck typing
   end
 end

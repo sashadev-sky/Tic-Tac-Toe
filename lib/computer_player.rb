@@ -8,7 +8,7 @@ class ComputerPlayer
     @mark = :O
   end
 
-  def display(board)
+  def receive_board(board)
     @board = board
   end
 
