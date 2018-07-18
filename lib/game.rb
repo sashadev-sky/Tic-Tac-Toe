@@ -13,17 +13,21 @@ class Game
   end
 
   def play
-    play_turn until over?
+    until over?
+      system("clear")
+      board.render
+      play_turn
+      system("clear")
+      board.render
+      switch_players!
+    end
     winner ? abort("#{winner} you have won!") : abort("its a tie!")
   end
 
   def play_turn
-    board.render
     current_player.receive_board(board.grid)
     move = current_player.get_move
     board.place_mark(move, current_player.mark)
-    board.render
-    self.switch_players!
   end
 
   def winner
@@ -48,12 +52,9 @@ class Game
   end
 
   def switch_players!
-    if @current_player == @player_one
-      @current_player = @player_two
-    else
-      @current_player = @player_one
-    end
+    @current_player = current_player == player_one ? player_two : player_one
   end
+
 end
 
 if $PROGRAM_NAME == __FILE__
