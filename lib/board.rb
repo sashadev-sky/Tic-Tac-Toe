@@ -6,19 +6,23 @@ class Board
     @marks = [:X, :O]
   end
 
-  def place_mark(position, mark)
-    row = position[0]
-    col = position[1]
-    unless empty?(position)
-      raise "This position is taken"
-    end
-    @grid[row][col] = mark
+  def [](pos)
+    row, col = pos
+    grid[row][col]
   end
 
-  def empty?(position)
-    row = position[0]
-    col = position[1]
-    @grid[row][col] == nil
+  def []=(pos, value)
+    row, col = pos
+    grid[row][col] = value
+  end
+
+  def place_mark(pos, mark)
+    raise "This position is taken" unless empty?(pos)
+    self[pos] = mark
+  end
+
+  def empty?(pos)
+    self[pos] == nil
   end
 
 end

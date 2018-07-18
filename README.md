@@ -10,9 +10,7 @@ started.
   - `empty?`, which takes a position as an argument
   - `winner`, which should return a mark
   - `over?`, which should return true or false
-  - If you want to be a little fancy, read the attached `bracket-methods`
-    reading.
-
+  
 * In your player classes, have an instance variable `mark` that the game will
   set on initialize.
 
