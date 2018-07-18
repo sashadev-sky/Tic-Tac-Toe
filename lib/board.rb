@@ -25,6 +25,25 @@ class Board
     self[pos] == nil
   end
 
+  def rows
+    grid
+  end
+
+  def columns
+    rows.transpose
+  end
+
+  def diagonals
+    left_diag = []
+    right_diag = []
+    diags = []
+    rows.each_with_index do |row, index|
+      left_diag << row[index]
+      right_diag << row[-index + (row.length - 1)]
+    end
+    diags << left_diag << right_diag
+  end
+
   def render
     row0 = "0 |"
     (0..2).each do |col|

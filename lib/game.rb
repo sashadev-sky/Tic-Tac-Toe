@@ -14,11 +14,7 @@ class Game
 
   def play
     play_turn until over?
-    if winner
-      abort("#{winner} you have won!")
-    else
-      abort("its a tie!")
-    end
+    winner ? abort("#{winner} you have won!") : abort("its a tie!")
   end
 
   def play_turn
@@ -31,24 +27,19 @@ class Game
   end
 
   def winner
-    left_vertical_count = 0
-    right_vertical_count = 0
-    column_count_hash = {}
-    board.grid.each_with_index do |row, index|
+    board.rows.each do |row|
       return :X if row.count(:X) == row.length
       return :O if row.count(:O) == row.length
-      if row[index] == :X
-        left_vertical_count += 1
-      end
-      if row[-index + (row.length - 1)] == :X
-        right_vertical_count += 1
-      end
-      return :X if left_vertical_count == row.length || right_vertical_count == row.length
     end
-    board.grid.transpose.each do |col|
+    board.columns.each do |col|
       return :O if col.count(:O) == col.length
       return :X if col.count(:X) == col.length
     end
+    board.diagonals.each do |diag|
+      return :O if diag.count(:O) == diag.length
+      return :X if diag.count(:X) == diag.length
+    end
+
     nil
   end
 
