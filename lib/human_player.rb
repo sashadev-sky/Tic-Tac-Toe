@@ -1,9 +1,9 @@
 class HumanPlayer
-  attr_accessor :name, :mark
+  attr_accessor :mark
+  attr_reader :name
 
   def initialize(name)
     @name = name
-    @mark = :X
   end
 
   def get_move

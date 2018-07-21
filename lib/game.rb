@@ -6,10 +6,11 @@ class Game
   attr_accessor :board, :player_one, :player_two, :current_player
 
   def initialize(player_one, player_two)
-    @player_one = player_one
-    @player_two = player_two
-    @board = Board.new
+    @player_one, @player_two = player_one, player_two
+    player_one.mark = :X
+    player_two.mark = :O
     @current_player = player_one
+    @board = Board.new
   end
 
   def play

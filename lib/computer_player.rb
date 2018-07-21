@@ -1,11 +1,11 @@
 require 'byebug'
 
 class ComputerPlayer
-  attr_accessor :board, :mark
+  attr_reader :name
+  attr_accessor :mark
 
   def initialize(name)
-    @name = "Bonzo"
-    @mark = :O
+    @name = name
   end
 
   def receive_board(board)
@@ -22,7 +22,7 @@ class ComputerPlayer
     # if its a left diagonal, the first index will also == col
     # if its a right diagonal, -first index + 2 == col
 
-  # check for winning_move (check own mark), then check for a move that prevents losing (other player mark)
+  # check for winning_move (check own mark), then check for a move that prevents losing (mark2)
 
   def get_move
     mark2 = other_player_mark
@@ -51,5 +51,6 @@ class ComputerPlayer
     end
     available_moves.sample
   end
+
 
 end
