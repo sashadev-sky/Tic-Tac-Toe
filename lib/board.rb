@@ -49,6 +49,23 @@ class Board
     diags << left_diag << right_diag
   end
 
+  def winner
+    rows.each do |row|
+      return :X if row.count(:X) == row.length
+      return :O if row.count(:O) == row.length
+    end
+    columns.each do |col|
+      return :O if col.count(:O) == col.length
+      return :X if col.count(:X) == col.length
+    end
+    diagonals.each do |diag|
+      return :O if diag.count(:O) == diag.length
+      return :X if diag.count(:X) == diag.length
+    end
+
+    nil
+  end
+
   def render
     row0 = "0 |"
     (0..2).each do |col|

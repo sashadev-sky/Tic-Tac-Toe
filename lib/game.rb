@@ -22,7 +22,7 @@ class Game
       board.render
       switch_players!
     end
-    winner ? abort("#{winner} you have won!") : abort("its a tie!")
+    board.winner ? abort("#{board.winner} you have won!") : abort("its a tie!")
   end
 
   def play_turn
@@ -39,25 +39,25 @@ class Game
     end
   end
 
-  def winner
-    board.rows.each do |row|
-      return :X if row.count(:X) == row.length
-      return :O if row.count(:O) == row.length
-    end
-    board.columns.each do |col|
-      return :O if col.count(:O) == col.length
-      return :X if col.count(:X) == col.length
-    end
-    board.diagonals.each do |diag|
-      return :O if diag.count(:O) == diag.length
-      return :X if diag.count(:X) == diag.length
-    end
-
-    nil
-  end
+  # def winner
+  #   board.rows.each do |row|
+  #     return :X if row.count(:X) == row.length
+  #     return :O if row.count(:O) == row.length
+  #   end
+  #   board.columns.each do |col|
+  #     return :O if col.count(:O) == col.length
+  #     return :X if col.count(:X) == col.length
+  #   end
+  #   board.diagonals.each do |diag|
+  #     return :O if diag.count(:O) == diag.length
+  #     return :X if diag.count(:X) == diag.length
+  #   end
+  #
+  #   nil
+  # end
 
   def over?
-    winner || board.grid.none? { |row| row.include?(nil) }
+    board.winner || board.grid.none? { |row| row.include?(nil) }
   end
 
   def switch_players!
