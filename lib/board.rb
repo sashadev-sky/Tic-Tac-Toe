@@ -1,5 +1,5 @@
 class Board
-  attr_accessor :grid, :marks
+  attr_reader :grid, :marks
 
   def initialize(grid = Array.new(3) { Array.new(3) })
     @grid = grid
@@ -50,17 +50,10 @@ class Board
   end
 
   def winner
-    rows.each do |row|
-      return :X if row.count(:X) == row.length
-      return :O if row.count(:O) == row.length
-    end
-    columns.each do |col|
-      return :O if col.count(:O) == col.length
-      return :X if col.count(:X) == col.length
-    end
-    diagonals.each do |diag|
-      return :O if diag.count(:O) == diag.length
-      return :X if diag.count(:X) == diag.length
+    marks.each do |mark|
+      rows.each { |row| return mark if row.count(mark) == row.length }
+      columns.each { |col| return mark if col.count(mark) == col.length }
+      diagonals.each { |diag| return mark if diag.count(mark) == diag.length }
     end
 
     nil
