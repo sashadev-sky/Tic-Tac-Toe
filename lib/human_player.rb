@@ -13,7 +13,7 @@ class HumanPlayer
       position = gets.chomp
       position.split(", ").map { |el| Integer(el) }
     rescue ArgumentError
-      puts "Error: please enter valid numbers"
+      puts "Error: please enter valid numbers in format number, number"
       retry
     end
   end
