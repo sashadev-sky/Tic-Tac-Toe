@@ -17,7 +17,7 @@ class Board
   end
 
   def place_mark(pos, mark)
-    raise "This position is taken" unless empty?(pos)
+    raise "Error: this position is taken" unless empty?(pos)
     self[pos] = mark
   end
 
