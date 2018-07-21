@@ -56,7 +56,6 @@ class Game
 end
 
 if $PROGRAM_NAME == __FILE__
-
   print "Enter your name: "
   name = gets.chomp.strip
   human = HumanPlayer.new(name)
