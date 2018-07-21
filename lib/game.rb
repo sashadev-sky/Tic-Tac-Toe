@@ -14,6 +14,7 @@ class Game
   end
 
   def play
+    welcome_message
     until over?
       system("clear")
       board.render
@@ -23,6 +24,11 @@ class Game
       switch_players!
     end
     board.winner ? abort("#{board.winner} you have won!") : abort("its a tie!")
+  end
+
+  def welcome_message
+    puts "Welcome #{player_one.name.capitalize} and #{player_two.name.capitalize}!"
+    sleep(2)
   end
 
   def play_turn
@@ -39,23 +45,6 @@ class Game
     end
   end
 
-  # def winner
-  #   board.rows.each do |row|
-  #     return :X if row.count(:X) == row.length
-  #     return :O if row.count(:O) == row.length
-  #   end
-  #   board.columns.each do |col|
-  #     return :O if col.count(:O) == col.length
-  #     return :X if col.count(:X) == col.length
-  #   end
-  #   board.diagonals.each do |diag|
-  #     return :O if diag.count(:O) == diag.length
-  #     return :X if diag.count(:X) == diag.length
-  #   end
-  #
-  #   nil
-  # end
-
   def over?
     board.winner || board.grid.none? { |row| row.include?(nil) }
   end
@@ -71,7 +60,7 @@ if $PROGRAM_NAME == __FILE__
   print "Enter your name: "
   name = gets.chomp.strip
   human = HumanPlayer.new(name)
-  garry = ComputerPlayer.new('garry')
+  garry = ComputerPlayer.new('Garry')
 
   new_game = Game.new(human, garry)
   new_game.play
