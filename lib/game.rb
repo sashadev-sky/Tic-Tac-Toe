@@ -31,7 +31,10 @@ class Game
       board.place_mark(move, current_player.mark)
     rescue RuntimeError => e
       puts e.message
-    retry
+      retry
+    rescue NoMethodError
+      puts "Error: this position is outside of the board"
+      retry
     end
   end
 

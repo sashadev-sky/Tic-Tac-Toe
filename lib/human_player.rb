@@ -7,12 +7,12 @@ class HumanPlayer
   end
 
   def get_move
-    puts "where would you like to move? please give coordinates in format number, number"
-    print '> '
     begin
+      puts "Where would you like to move? Please give coordinates in format number, number"
+      print '> '
       position = gets.chomp
       position.split(", ").map { |el| Integer(el) }
-    rescue
+    rescue ArgumentError
       puts "Error: please enter valid numbers"
       retry
     end

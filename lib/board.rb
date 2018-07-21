@@ -18,11 +18,16 @@ class Board
 
   def place_mark(pos, mark)
     raise "Error: this position is taken" unless empty?(pos)
+    raise "Error: this position is outside of the board" unless valid_index?(pos)
     self[pos] = mark
   end
 
   def empty?(pos)
     self[pos] == nil
+  end
+
+  def valid_index?(pos)
+    pos.all? { |idx| idx.between?(0, 3) }
   end
 
   def rows
