@@ -26,7 +26,7 @@ class Game
 
   def play_turn
     begin
-      current_player.receive_board(board.grid)
+      current_player.receive_board(board)
       move = current_player.get_move
       board.place_mark(move, current_player.mark)
     rescue RuntimeError => e
