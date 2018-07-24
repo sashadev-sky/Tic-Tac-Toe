@@ -47,6 +47,8 @@ class Game
 
   private
 
+  attr_reader :board
+
   def over?
     board.winner || board.grid.none? { |row| row.include?(nil) }
   end
@@ -54,8 +56,6 @@ class Game
   def switch_players!
     @current_player = current_player == player_one ? player_two : player_one
   end
-
-  attr_reader :board
 
 end
 
