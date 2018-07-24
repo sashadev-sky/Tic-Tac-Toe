@@ -1,5 +1,5 @@
 class ComputerPlayer
-  attr_reader :name, :board
+  attr_reader :name
   attr_accessor :mark
 
   def initialize(name)
@@ -23,16 +23,6 @@ class ComputerPlayer
     available_moves.sample
   end
 
-  def available_moves
-    available_moves = []
-    board.rows.each_with_index do |row, index1|
-      row.each_with_index do |col, index2|
-        available_moves << [index1, index2] if col == nil
-      end
-    end
-    available_moves
-  end
-
   def wins?(move)
     board[move] = mark
     if board.winner == mark
@@ -54,5 +44,20 @@ class ComputerPlayer
       false
     end
   end
+
+  private
+
+  attr_reader :board
+
+  def available_moves
+    available_moves = []
+    board.rows.each_with_index do |row, index1|
+      row.each_with_index do |col, index2|
+        available_moves << [index1, index2] if col == nil
+      end
+    end
+    available_moves
+  end
+
 
 end

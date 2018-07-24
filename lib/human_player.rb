@@ -1,6 +1,6 @@
 class HumanPlayer
-  attr_accessor :mark
   attr_reader :name
+  attr_accessor :mark
 
   def initialize(name)
     @name = name

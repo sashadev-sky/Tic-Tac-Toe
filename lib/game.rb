@@ -3,7 +3,7 @@ require_relative 'human_player'
 require_relative 'computer_player'
 
 class Game
-  attr_accessor :board, :player_one, :player_two, :current_player
+  attr_reader :current_player, :player_one, :player_two
 
   def initialize(player_one, player_two)
     @player_one, @player_two = player_one, player_two
@@ -45,6 +45,8 @@ class Game
     end
   end
 
+  private
+
   def over?
     board.winner || board.grid.none? { |row| row.include?(nil) }
   end
@@ -52,6 +54,8 @@ class Game
   def switch_players!
     @current_player = current_player == player_one ? player_two : player_one
   end
+
+  attr_reader :board
 
 end
 
